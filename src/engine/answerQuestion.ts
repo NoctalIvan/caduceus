@@ -2,6 +2,7 @@ import { IQuestion } from "../interfaces/IQuestion";
 import { getConditionFunction } from "./getConditionFunction";
 import { IAnswer } from "../interfaces/IAnswer";
 import { IChartItem, IEnrichedChartItem } from "../interfaces/IChartItem";
+import { fetchEnrichedChart } from "./fetcher";
 
 export function answerQuestion(chart:IEnrichedChartItem[], question:IQuestion):IAnswer {   
     const conditionFunction = getConditionFunction(question.condition)
@@ -18,3 +19,8 @@ export function answerQuestion(chart:IEnrichedChartItem[], question:IQuestion):I
         dummySize: chartMatchingResult.length,
     }
 }
+
+export async function fetchAndAnswer(question: IQuestion):Promise<IAnswer> {
+    const chart = await fetchEnrichedChart(question.symbol, '5y')
+    return answerQuestion(chart, question)
+} 

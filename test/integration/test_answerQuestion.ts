@@ -2,12 +2,11 @@ import { fetchEnrichedChart } from './../../src/engine/fetcher'
 import { IEnrichedChartItem } from '../../src/interfaces/IChartItem';
 import { IQuestion } from '../../src/interfaces/IQuestion'
 import { ComparisonOperator } from '../../src/enums/ComparisonOperator';
-import { answerQuestion } from '../../src/engine/answerQuestion'
+import { answerQuestion, fetchAndAnswer } from '../../src/engine/answerQuestion'
 import * as assert from 'assert'
 
 describe('answerQuestion', () => {
     it('should resolve an easy question', async () => {
-        const chart = await fetchEnrichedChart('aapl', '1m')
         const question:IQuestion = {
             symbol: 'aapl',
             condition: {
@@ -26,7 +25,7 @@ describe('answerQuestion', () => {
             }
         }
 
-        const answer = answerQuestion(chart, question)
+        const answer = await fetchAndAnswer(question)
         assert.ok(answer)
         assert.ok(answer.matchingSize > 1)
     } )
