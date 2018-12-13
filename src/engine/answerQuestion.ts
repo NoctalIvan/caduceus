@@ -1,7 +1,7 @@
 import { IQuestion } from "../interfaces/IQuestion";
 import { getConditionFunction } from "./getConditionFunction";
 import { IAnswer } from "../interfaces/IAnswer";
-import { IChartItem, IEnrichedChartItem } from "../interfaces/IChartItem";
+import { IEnrichedChartItem } from "../interfaces/IChartItem";
 import { fetchEnrichedChart } from "./fetcher";
 
 export function answerQuestion(chart:IEnrichedChartItem[], question:IQuestion):IAnswer {   
