@@ -12,7 +12,6 @@ describe('analytics - movingAvg', () => {
     const chart:IEnrichedChartItem[] = require('./../mocks/appl.json')
 
     describe('sma & co', () => {
-        const chart:IEnrichedChartItem[] = require('./../mocks/appl.json')
         sma(chart, 3)
         ema(chart, 3)
         wma(chart, 3)
@@ -27,7 +26,6 @@ describe('analytics - movingAvg', () => {
     })
 
     describe('smaDelta', () => {
-        const chart:IEnrichedChartItem[] = require('./../mocks/appl.json')
         smaDelta(chart, 3)
     
         it('should resolve p3 smaDelta', () => {

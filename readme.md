@@ -61,41 +61,7 @@ Data & finance ftw
 - [ ] keltnerchannels
 - [ ] chandelierexit
 
-- [ ] abandonedbaby
-- [ ] doji
-- [ ] bearishengulfingpattern
-- [ ] bullishengulfingpattern
-- [ ] darkcloudcover
-- [ ] downsidetasukigap
-- [ ] dragonflydoji
-- [ ] gravestonedoji
-- [ ] bullishharami
-- [ ] bearishharami
-- [ ] bullishharamicross
-- [ ] bearishharamicross
-- [ ] eveningdojistar
-- [ ] eveningstar
-- [ ] morningdojistar
-- [ ] morningstar
-- [ ] bullishmarubozu
-- [ ] bearishmarubozu
-- [ ] piercingline
-- [ ] bullishspinningtop
-- [ ] bearishspinningtop
-- [ ] threeblackcrows
-- [ ] threewhitesoldiers
-- [ ] bullishhammerstick
-- [ ] bearishhammerstick
-- [ ] bullishinvertedhammerstick
-- [ ] bearishinvertedhammerstick
-- [ ] hammerpattern
-- [ ] hammerpatternunconfirmed
-- [ ] hangingman
-- [ ] hangingmanunconfirmed
-- [ ] shootingstar
-- [ ] shootingstarunconfirmed
-- [ ] tweezertop
-- [ ] tweezerbottom
+- [x] candle patterns x 34
 
 - [ ] predictPattern
 - [ ] hasDoubleBottom
@@ -104,7 +70,6 @@ Data & finance ftw
 - [ ] hasInverseHeadAndShoulder
 - [ ] isTrendingUp
 - [ ] isTrendingDown
-
 - [ ] bullish
 - [ ] bearish
 

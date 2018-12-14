@@ -31,4 +31,7 @@ export interface IEnrichedChartItem extends IChartItem {
     emaDelta: {[period: number]: number},
     wmaDelta: {[period: number]: number},
     wemaDelta: {[period: number]: number},
+
+    // candle patterns
+    candlePatterns: {[name: string]: boolean},
 }
