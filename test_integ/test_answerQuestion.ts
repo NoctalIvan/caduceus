@@ -8,14 +8,20 @@ describe('answerQuestion', () => {
         const question:IQuestion = {
             symbol: 'aapl',
             condition: {
-                analytic: 'lastChangePercent',
+                analytic: {
+                    type: 'smaDelta',
+                    period: 7
+                },
                 comparison: {
-                    operator: ComparisonOperator.LT,
-                    value: -0.5
+                    operator: ComparisonOperator.GT,
+                    value: 1
                 },
             },
             resultCondition: {
-                analytic: 'futureChangePercent',
+                analytic: {
+                    type:'highestFutureRatio',
+                    period: 3,
+                },
                 comparison: {
                     operator: ComparisonOperator.GT,
                     value: 0.5

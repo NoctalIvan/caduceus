@@ -1,4 +1,4 @@
-export interface IChartItem {
+export interface IBaseChartItem {
     date: string,
     open: number,
     high: number,
@@ -13,37 +13,50 @@ export interface IChartItem {
     changeOverTime: number
 }
 
-export interface IEnrichedChartItem extends IChartItem {
+export interface IChartItem extends IBaseChartItem {
     // past future ratio
-    pastChange: {[period: number]: number},
-    futureChange: {[period: number]: number},
-    lowestPast: {[period: number]: number},
-    highestPast: {[period: number]: number},
-    lowestFuture: {[period: number]: number},
-    highestFuture: {[period: number]: number},
+    priceEvolution: {[period: string] : {
+        past: number,
+        pastRelative: number,
+        future: number,
+        futureRelative: number,
+        pastLowest: number,
+        pastLowestRelative: number,
+        pastHighest: number,
+        pastHighestRelative: number,
+        futureLowest: number,
+        futureLowestRelative: number,
+        futureHighest: number,
+        futureHighestRelative: number,
+    }},
 
     // movingAvg
-    sma: {[period: number]: number},
-    ema: {[period: number]: number},
-    wma: {[period: number]: number},
-    wema: {[period: number]: number},
-    smaRelative: {[period: number]: number},
-    emaRelative: {[period: number]: number},
-    wmaRelative: {[period: number]: number},
-    wemaRelative: {[period: number]: number},
-    smaDelta: {[period: number]: number},
-    emaDelta: {[period: number]: number},
-    wmaDelta: {[period: number]: number},
-    wemaDelta: {[period: number]: number},
+    movingAverages: {[period: string] : {
+        sma: number,
+        ema: number,
+        wma: number,
+        wema: number,
+        smaRelative: number,
+        emaRelative: number,
+        wmaRelative: number,
+        wemaRelative: number,
+        smaDelta: number,
+        emaDelta: number,
+        wmaDelta: number,
+        wemaDelta: number,
+    }}
 
     // candle patterns
     candlePatterns: {[name: string]: boolean},
 
     // MACD
-    macd: {[periods: string]: number}
-    macdDelta: {[periods: string]: number}
-    macdSignal: {[periods: string]: number}
-    macdSignalDelta: {[periods: string]: number}
-    macdHistogram: {[periods: string]: number}
-    macdHistogramDelta: {[periods: string]: number}
+    macd: {[period: string] : {
+        macd: number,
+        macdDelta: number,
+        signal: number,
+        signalDelta: number,
+        histogram: number,
+        histogramDelta: number,
+    }}
+    
 }

@@ -1,8 +1,8 @@
-import { IEnrichedChartItem } from "../../interfaces/IChartItem";
+import { IChartItem } from "../../interfaces/IChartItem";
 import { CandlePattern } from "../../enums/candlePattern";
 import * as anal from 'technicalindicators'
 
-export function candlePattern(chart:IEnrichedChartItem[], pattern:CandlePattern) {
+export function candlePattern(chart:IChartItem[], pattern:CandlePattern) {
     const analytic = anal[pattern.toString()]
     for(let i = 4; i < chart.length; i ++) {
         const item = chart[i]

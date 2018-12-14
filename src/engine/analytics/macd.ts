@@ -1,35 +1,27 @@
-import { IEnrichedChartItem } from '../../interfaces/IChartItem';
+import { IChartItem } from '../../interfaces/IChartItem';
 import { MACD } from 'technicalindicators'
 import { MACDOutput } from 'technicalindicators/declarations/moving_averages/MACD';
 
-export function macd(chart:IEnrichedChartItem[], fastPeriod:number, slowPeriod:number, signalPeriod:number) {
-    const analytic = new MACD({values: [], fastPeriod, slowPeriod, signalPeriod, SimpleMAOscillator: false, SimpleMASignal: false})
+export function macd(chart:IChartItem[], fastPeriod:number, slowPeriod:number, signalPeriod:number) {
+    const macd = new MACD({values: [], fastPeriod, slowPeriod, signalPeriod, SimpleMASignal: false, SimpleMAOscillator: false})
     const periodStr = [fastPeriod, slowPeriod, signalPeriod].join('_')
-
+    
     let lastValue:MACDOutput
-    chart.forEach(item => {
-        const value = analytic.nextValue(item.close)
-        if(!item.macd) {
-            item.macd = {}
-            item.macdDelta = {}
-            item.macdSignal = {}
-            item.macdSignalDelta = {}
-            item.macdHistogram = {}
-            item.macdHistogramDelta = {}
+    for(let i = 0; i < chart.length; i ++) {
+        const item = chart[i]
+        const value = macd.nextValue(item.close)
+
+        item.macd = item.macd || {}
+        item.macd[periodStr] = {
+            macd: value && value.MACD,
+            macdDelta: lastValue && value.MACD / lastValue.MACD - 1,
+            signal: value && value.signal,
+            signalDelta: lastValue && value.signal && lastValue.signal / value.signal - 1,
+            histogram: value && value.histogram,
+            histogramDelta: lastValue && value.histogram && lastValue.histogram / value.histogram - 1,
+            
         }
-        if(!value) {
-            return
-        }
-
-        item.macd[periodStr] = value.MACD
-        item.macdDelta[periodStr] = lastValue && value.MACD / lastValue.MACD - 1
-
-        item.macdSignal[periodStr] = value.signal
-        item.macdSignalDelta[periodStr] = lastValue && lastValue.signal && value.signal / lastValue.signal - 1
-
-        item.macdHistogram[periodStr] = value.histogram
-        item.macdHistogramDelta[periodStr] = lastValue && lastValue.histogram && value.histogram / lastValue.histogram - 1
 
         lastValue = value
-    })
+    }
 }

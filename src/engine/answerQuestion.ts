@@ -1,10 +1,11 @@
-import { IQuestion } from "../interfaces/IQuestion";
+import { IQuestion, IAnswer } from "../interfaces/IQuestion";
 import { getConditionFunction } from "./getConditionFunction";
-import { IAnswer } from "../interfaces/IAnswer";
-import { IEnrichedChartItem } from "../interfaces/IChartItem";
-import { fetchEnrichedChart } from "./fetcher";
+import { IChartItem } from "../interfaces/IChartItem";
+import { fetchChart } from "./fetcher";
+import { sma } from "./analytics/movingAvg";
+import { highestFutureRatio } from "./analytics/priceEvolution";
 
-export function answerQuestion(chart:IEnrichedChartItem[], question:IQuestion):IAnswer {   
+export function answerQuestion(chart:IChartItem[], question:IQuestion):IAnswer {   
     const conditionFunction = getConditionFunction(question.condition)
     const resultFunction = getConditionFunction(question.resultCondition)
 
@@ -21,6 +22,8 @@ export function answerQuestion(chart:IEnrichedChartItem[], question:IQuestion):I
 }
 
 export async function fetchAndAnswer(question: IQuestion):Promise<IAnswer> {
-    const chart = await fetchEnrichedChart(question.symbol, '5y')
+    const chart = await fetchChart(question.symbol, '5y')
+    highestFutureRatio(chart, 3)
+    sma(chart, 7)
     return answerQuestion(chart, question)
 } 

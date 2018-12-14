@@ -1,41 +1,24 @@
-import * as assert from 'assert'
-import { IEnrichedChartItem } from './../../src/interfaces/IChartItem'
-import { 
-    sma,
-    ema,
-    wma,
-    wema,
-    smaDelta,
-} from './../../src/engine/analytics/movingAvg'
+import * as assert from "assert";
+import { IChartItem } from "./../../src/interfaces/IChartItem";
+import { movingAverages } from "./../../src/engine/analytics/movingAvg";
 
-describe('analytics - movingAvg', () => {
-    const chart:IEnrichedChartItem[] = require('./../mocks/appl.json')
-
-    describe('sma & co', () => {
-        sma(chart, 3)
-        ema(chart, 3)
-        wma(chart, 3)
-        wema(chart, 3)
-    
-        it('should resolve p3', () => {
-            assert.equal(chart[3].sma[3].toFixed(2), '190.15')
-            assert.equal(chart[3].ema[3].toFixed(2), '191.24')
-            assert.equal(chart[3].wma[3].toFixed(2), '190.01')
-            assert.equal(chart[3].wema[3].toFixed(2), '191.18')
-        })
-
-        it('should resolve Relatives', () => {
-            assert.equal(
-                chart[3].smaRelative[3].toFixed(4), 
-                (chart[3].sma[3] / chart[3].close - 1).toFixed(4)
-            )
-        })
-
-        it('should resolve Deltas', () => {
-            assert.equal(
-                chart[3].smaDelta[3].toFixed(4), 
-                (chart[3].sma[3] / chart[2].sma[3] - 1).toFixed(4)
-            )
-        })
-    })
-})
+it("analytics - movingAvg", () => {
+  const chart: IChartItem[] = require("./../mocks/appl.json");
+  movingAverages(chart, 3)
+  assert.deepEqual(chart[3].movingAverages, {
+    "3": {
+      sma: 190.14666666666668,
+      ema: 191.23833333333334,
+      wma: 190.01,
+      wema: 190.14666666666668,
+      smaRelative: -0.00660014279992327,
+      emaRelative: -0.0008968531772982624,
+      wmaRelative: -0.007314142416801617,
+      wemaRelative: -0.0011958042363975352,
+      smaDelta: -0.004815073272854242,
+      emaDelta: 0.0008984647592462647,
+      wmaDelta: 0.0009042782016275286,
+      wemaDelta: 0.0005989765061642505
+    }
+  });
+});

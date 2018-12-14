@@ -1,10 +1,10 @@
-import { ICondition } from "../interfaces/ICondition";
 import { IChartItem } from "../interfaces/IChartItem";
 import { ComparisonOperator } from "../enums/ComparisonOperator";
+import { ICondition } from "../interfaces/IQuestion";
 
 export function getConditionFunction(condition:ICondition) {
     return (item:IChartItem) => {
-        const conditionValue = item[condition.analytic]
+        const conditionValue = item[condition.analytic.type][condition.analytic.period]
         if(!item || !conditionValue) {
             return null
         }

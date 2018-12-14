@@ -1,17 +1,21 @@
-import * as assert from 'assert'
-import { IEnrichedChartItem } from './../../src/interfaces/IChartItem'
-import { macd } from './../../src/engine/analytics/macd'
+import * as assert from "assert";
+import { IChartItem } from "./../../src/interfaces/IChartItem";
+import { macd } from "./../../src/engine/analytics/macd";
 
-describe('analytics - macd', () => {
-    const chart:IEnrichedChartItem[] = require('./../mocks/appl.json')
+describe("analytics - macd", () => {
+  const chart: IChartItem[] = require("./../mocks/appl.json");
 
-    it('macd', () => {
-        macd(chart, 2, 3, 2)
-        assert.deepEqual(chart[6].macd['2_3_2'].toFixed(2), '-2.37')
-        assert.deepEqual(chart[6].macdDelta['2_3_2'].toFixed(2), '1.29')
-        assert.deepEqual(chart[6].macdSignal['2_3_2'].toFixed(2), '-1.85')
-        assert.deepEqual(chart[6].macdSignalDelta['2_3_2'].toFixed(2), '1.29')
-        assert.deepEqual(chart[6].macdHistogram['2_3_2'].toFixed(2), '-0.52')
-        assert.deepEqual(chart[6].macdHistogramDelta['2_3_2'].toFixed(2), '1.30')
-    })
-})
+  it("macd", () => {
+    macd(chart, 3, 5, 4);
+    assert.deepEqual(chart[11].macd, {
+      "3_5_4": {
+        macd: -0.11193386881288347,
+        macdDelta: -0.9342620485527969,
+        signal: -1.2020348627514907,
+        signalDelta: 0.6045864545854831,
+        histogram: 1.0901009939386073,
+        histogramDelta: -0.7926425323985613
+      }
+    });
+  });
+});

@@ -1,10 +1,10 @@
-import { IEnrichedChartItem } from "../../src/interfaces/IChartItem";
+import { IChartItem } from "../../src/interfaces/IChartItem";
 import * as assert from 'assert'
 import { candlePattern } from '../../src/engine/analytics/candlePatterns'
 import { CandlePattern } from "../../src/enums/candlePattern";
 
 describe('analytics - pattern', () => {
-    const chart:IEnrichedChartItem[] = require('./../mocks/appl.json')
+    const chart:IChartItem[] = require('./../mocks/appl.json')
 
     it('all patterns', () => {
         Object.keys(CandlePattern).forEach((pat:CandlePattern) => {
