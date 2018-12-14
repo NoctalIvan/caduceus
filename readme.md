@@ -20,6 +20,8 @@ Data & finance ftw
 
 ### indicator checklist
 
+- [x] past/future ratios
+
 - [x] sma
 - [x] ema
 - [x] wma
@@ -55,9 +57,9 @@ Data & finance ftw
 - [ ] sum
 - [ ] FixedSizeLinkedList
 - [ ] sd
-
-- [ ] bullish
-- [ ] bearish
+- [ ] ichimokucloud
+- [ ] keltnerchannels
+- [ ] chandelierexit
 
 - [ ] abandonedbaby
 - [ ] doji
@@ -94,6 +96,7 @@ Data & finance ftw
 - [ ] shootingstarunconfirmed
 - [ ] tweezertop
 - [ ] tweezerbottom
+
 - [ ] predictPattern
 - [ ] hasDoubleBottom
 - [ ] hasDoubleTop
@@ -101,8 +104,8 @@ Data & finance ftw
 - [ ] hasInverseHeadAndShoulder
 - [ ] isTrendingUp
 - [ ] isTrendingDown
-- [ ] ichimokucloud
-- [ ] keltnerchannels
-- [ ] chandelierexit
+
+- [ ] bullish
+- [ ] bearish
 
 Ur the best, make it work! 🐗
