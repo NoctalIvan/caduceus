@@ -3,34 +3,26 @@ import { IEnrichedChartItem } from './../../src/interfaces/IChartItem'
 import { 
     sma,
     ema,
+    wma,
+    wema,
     smaDelta,
-    emaDelta,
 } from './../../src/engine/analytics/movingAvg'
 
 describe('analytics - movingAvg', () => {
     const chart:IEnrichedChartItem[] = require('./../mocks/appl.json')
 
-    describe('sma', () => {
+    describe('sma & co', () => {
         const chart:IEnrichedChartItem[] = require('./../mocks/appl.json')
         sma(chart, 3)
-    
-        it('should resolve p3 sma', () => {
-            assert.equal(
-                chart[3].sma[3].toFixed(4), 
-                ((chart[1].close + chart[2].close + chart[3].close)/3).toFixed(4)
-            )
-        })
-    })
-
-    describe('ema', () => {
-        const chart:IEnrichedChartItem[] = require('./../mocks/appl.json')
         ema(chart, 3)
+        wma(chart, 3)
+        wema(chart, 3)
     
-        it('should resolve p3 ema', () => {
-            assert.equal(
-                chart[3].ema[3].toFixed(4), 
-                '191.2383'
-            )
+        it('should resolve p3', () => {
+            assert.equal(chart[3].sma[3].toFixed(2), '190.15')
+            assert.equal(chart[3].ema[3].toFixed(2), '191.24')
+            assert.equal(chart[3].wma[3].toFixed(2), '190.01')
+            assert.equal(chart[3].wema[3].toFixed(2), '191.18')
         })
     })
 
@@ -42,18 +34,6 @@ describe('analytics - movingAvg', () => {
             assert.equal(
                 chart[3].smaDelta[3].toFixed(4), 
                 (chart[3].sma[3] / chart[2].sma[3] - 1).toFixed(4)
-            )
-        })
-    })
-
-    describe('emaDelta', () => {
-        const chart:IEnrichedChartItem[] = require('./../mocks/appl.json')
-        emaDelta(chart, 3)
-    
-        it('should resolve p3 ema', () => {
-            assert.equal(
-                chart[3].emaDelta[3].toFixed(4), 
-                (chart[3].ema[3] / chart[2].ema[3] - 1).toFixed(4)
             )
         })
     })

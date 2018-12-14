@@ -1,46 +1,46 @@
 import { IEnrichedChartItem } from "../../interfaces/IChartItem";
-import { SMA, EMA } from 'technicalindicators'
+import * as anal from 'technicalindicators'
 
-export function sma (chart:IEnrichedChartItem[], period:number) {
-    const sma = new SMA({period, values : []})
+function avg (chart:IEnrichedChartItem[], period:number, type:string, delta:boolean) {
+    const a = new anal[type.toUpperCase()]({period, values : []})
     chart.forEach(item => {
-        if(!item.sma) {item.sma = {}}
-        item.sma[period] = sma.nextValue(item.close)
+        if(!item[type]) {item[type] = {}}
+        item[type][period] = a.nextValue(item.close)
     })
-}
 
-export function ema (chart:IEnrichedChartItem[], period:number) {
-    const ema = new EMA({period, values : []})
-    chart.forEach(item => {
-        if(!item.ema) {item.ema = {}}
-        item.ema[period] = ema.nextValue(item.close)
-    })
-}
-
-export function smaDelta (chart:IEnrichedChartItem[], period:number) {
-    if(!chart[0].sma || !chart[period].sma[period]) {
-        sma(chart, period)
-    }
-
-    for(let i = 1; i < chart.length; i ++) {
-        const item = chart[i]
-        item.smaDelta = {
-            ...(item.smaDelta || {}),
-            [period]: item.sma[period] / chart[i-1].sma[period] - 1
+    if(delta) {
+        for(let i = 1; i < chart.length; i ++) {
+            const item = chart[i]
+            item[type + 'Delta'] = {
+                ...(item[type + 'Delta'] || {}),
+                [period]: item[type][period] / chart[i-1][type][period] - 1
+            }
         }
     }
 }
 
-export function emaDelta (chart:IEnrichedChartItem[], period:number) {
-    if(!chart[0].ema || !chart[period].ema[period]) {
-        ema(chart, period)
-    }
+export function sma(chart:IEnrichedChartItem[], period:number) {
+    avg(chart, period, 'sma', false)
+}
+export function ema(chart:IEnrichedChartItem[], period:number) {
+    avg(chart, period, 'ema', false)
+}
+export function wma(chart:IEnrichedChartItem[], period:number) {
+    avg(chart, period, 'wma', false)
+}
+export function wema(chart:IEnrichedChartItem[], period:number) {
+    avg(chart, period, 'wema', false)
+}
 
-    for(let i = 1; i < chart.length; i ++) {
-        const item = chart[i]
-        item.emaDelta = {
-            ...(item.emaDelta || {}),
-            [period]: item.ema[period] / chart[i-1].ema[period] - 1
-        }
-    }
+export function smaDelta(chart:IEnrichedChartItem[], period:number) {
+    avg(chart, period, 'sma', true)
+}
+export function emaDelta(chart:IEnrichedChartItem[], period:number) {
+    avg(chart, period, 'ema', true)
+}
+export function wmaDelta(chart:IEnrichedChartItem[], period:number) {
+    avg(chart, period, 'wma', true)
+}
+export function wemaDelta(chart:IEnrichedChartItem[], period:number) {
+    avg(chart, period, 'wema', true)
 }

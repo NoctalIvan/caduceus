@@ -25,6 +25,10 @@ export interface IEnrichedChartItem extends IChartItem {
     // movingAvg
     sma: {[period: number]: number},
     ema: {[period: number]: number},
+    wma: {[period: number]: number},
+    wema: {[period: number]: number},
     smaDelta: {[period: number]: number},
     emaDelta: {[period: number]: number},
+    wmaDelta: {[period: number]: number},
+    wemaDelta: {[period: number]: number},
 }
