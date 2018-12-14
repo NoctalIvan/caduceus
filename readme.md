@@ -27,8 +27,13 @@ Data & finance ftw
 - [x] wma
 - [x] wema
 
-- [ ] macd
+- [x] candle patterns x 34
+
+- [x] macd
+
 - [ ] rsi
+- [ ] stochasticrsi
+
 - [ ] bollingerbands
 - [ ] adx
 - [ ] atr
@@ -48,7 +53,6 @@ Data & finance ftw
 - [ ] volumeprofile
 - [ ] renko
 - [ ] heikinashi
-- [ ] stochasticrsi
 - [ ] mfi
 - [ ] averagegain
 - [ ] averageloss
@@ -60,8 +64,6 @@ Data & finance ftw
 - [ ] ichimokucloud
 - [ ] keltnerchannels
 - [ ] chandelierexit
-
-- [x] candle patterns x 34
 
 - [ ] predictPattern
 - [ ] hasDoubleBottom

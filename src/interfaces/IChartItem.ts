@@ -59,4 +59,15 @@ export interface IChartItem extends IBaseChartItem {
         histogramDelta: number,
     }}
     
+    // RSI
+    rsi: {[period: string] : {
+        rsi: number,
+        rsiDelta: number,
+    }}
+
+    // StochRsi
+    stochRsi: {[period: string] : {
+        rsi: number,
+        rsiDelta: number,
+    }}
 }
