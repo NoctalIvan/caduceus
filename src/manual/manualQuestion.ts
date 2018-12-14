@@ -12,10 +12,10 @@ const question:IQuestion = {
         },
     },
     resultCondition: {
-        analytic: 'futureChangePercent',
+        analytic: 'changePercent',
         comparison: {
             operator: ComparisonOperator.GT,
-            value: 0.5
+            value: 1
         }
     }
 }

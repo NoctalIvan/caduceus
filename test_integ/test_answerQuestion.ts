@@ -1,8 +1,6 @@
-import { fetchEnrichedChart } from './../../src/engine/fetcher'
-import { IEnrichedChartItem } from '../../src/interfaces/IChartItem';
-import { IQuestion } from '../../src/interfaces/IQuestion'
-import { ComparisonOperator } from '../../src/enums/ComparisonOperator';
-import { answerQuestion, fetchAndAnswer } from '../../src/engine/answerQuestion'
+import { IQuestion } from '../src/interfaces/IQuestion'
+import { ComparisonOperator } from '../src/enums/ComparisonOperator';
+import { fetchAndAnswer } from '../src/engine/answerQuestion'
 import * as assert from 'assert'
 
 describe('answerQuestion', () => {

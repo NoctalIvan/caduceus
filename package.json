@@ -10,6 +10,7 @@
     "start": "tsc && node dist/server/index.js",
     "man": "tsc && node dist/manual/manualQuestion.js",
     "test": "ts-mocha test/**/*.ts",
+    "test-integ": "ts-mocha test_integ/**/*.ts",
     "cc": "nyc npm test",
     "tsc": "tsc"
   },

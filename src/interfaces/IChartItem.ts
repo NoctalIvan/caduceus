@@ -14,6 +14,6 @@ export interface IChartItem {
 }
 
 export interface IEnrichedChartItem extends IChartItem {
-    lastChangePercent: number
-    futureChangePercent: number
+    pastChange: {[period: number]: number},
+    futureChange: {[period: number]: number}
 }
