@@ -6,34 +6,32 @@ export function nextValueOp (
     periods:{[label: string]: number},
     getValue:(IEnrichedChartItem) => Object,
     type:string, 
-    delta:boolean
 ) {
     const analytic = new anal[type.toUpperCase()]({
         ...periods,
         values: []
     })
     const strPeriod = Object.values(periods).join('_')
+    let lastValue = undefined
     chart.forEach(item => {
-        if(!item[type]) {item[type] = {}}
-        item[type][strPeriod] = analytic.nextValue(getValue(item))
-    })
-
-    if(delta) {
-        for(let i = 1; i < chart.length; i ++) {
-            const item = chart[i]
-            item[type + 'Delta'] = {
-                ...(item[type + 'Delta'] || {}),
-                [strPeriod]: item[type][strPeriod] / chart[i-1][type][strPeriod] - 1
-            }
+        if(!item[type]) {
+            item[type] = {}
+            item[type + 'Delta'] = {}
+            item[type + 'Relative'] = {}
         }
-    }
+        const value = analytic.nextValue(getValue(item))
+        item[type][strPeriod] = value
+        item[type + 'Relative'][strPeriod] = value / item.close - 1
+        item[type + 'Delta'][strPeriod] = lastValue && value / lastValue - 1
+
+        lastValue = value
+    })
 }
 
 export function closeSimplePeriodOp(
     chart: IEnrichedChartItem[], 
     period: number,
     type: string, 
-    delta: boolean
 ) {
-    nextValueOp(chart, {period}, (a) => a.close, type, delta)
+    nextValueOp(chart, {period}, (a) => a.close, type)
 }

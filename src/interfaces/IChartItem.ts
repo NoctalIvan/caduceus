@@ -27,6 +27,10 @@ export interface IEnrichedChartItem extends IChartItem {
     ema: {[period: number]: number},
     wma: {[period: number]: number},
     wema: {[period: number]: number},
+    smaRelative: {[period: number]: number},
+    emaRelative: {[period: number]: number},
+    wmaRelative: {[period: number]: number},
+    wemaRelative: {[period: number]: number},
     smaDelta: {[period: number]: number},
     emaDelta: {[period: number]: number},
     wmaDelta: {[period: number]: number},
@@ -34,4 +38,12 @@ export interface IEnrichedChartItem extends IChartItem {
 
     // candle patterns
     candlePatterns: {[name: string]: boolean},
+
+    // MACD
+    macd: {[periods: string]: number}
+    macdDelta: {[periods: string]: number}
+    macdSignal: {[periods: string]: number}
+    macdSignalDelta: {[periods: string]: number}
+    macdHistogram: {[periods: string]: number}
+    macdHistogramDelta: {[periods: string]: number}
 }

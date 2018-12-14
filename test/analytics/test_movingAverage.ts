@@ -23,12 +23,15 @@ describe('analytics - movingAvg', () => {
             assert.equal(chart[3].wma[3].toFixed(2), '190.01')
             assert.equal(chart[3].wema[3].toFixed(2), '191.18')
         })
-    })
 
-    describe('smaDelta', () => {
-        smaDelta(chart, 3)
-    
-        it('should resolve p3 smaDelta', () => {
+        it('should resolve Relatives', () => {
+            assert.equal(
+                chart[3].smaRelative[3].toFixed(4), 
+                (chart[3].sma[3] / chart[3].close - 1).toFixed(4)
+            )
+        })
+
+        it('should resolve Deltas', () => {
             assert.equal(
                 chart[3].smaDelta[3].toFixed(4), 
                 (chart[3].sma[3] / chart[2].sma[3] - 1).toFixed(4)
