@@ -7,7 +7,7 @@ it("analytics - rsi", () => {
     anal.rsi(chart, 3)
     anal.adx(chart, 3)
     anal.candlePatterns(chart)
-    anal.macd(chart, 3, 5, 4)
+    anal.macd(chart, [3, 5, 4])
     anal.movingAvg(chart, 3)
     anal.priceEvolution(chart, 3)
     anal.atr(chart, 3)

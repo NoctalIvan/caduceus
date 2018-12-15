@@ -2,9 +2,9 @@ import { IChartItem } from '../../interfaces/IChartItem';
 import { MACD } from 'technicalindicators'
 import { MACDOutput } from 'technicalindicators/declarations/moving_averages/MACD';
 
-export function macd(chart:IChartItem[], fastPeriod:number, slowPeriod:number, signalPeriod:number) {
-    const macd = new MACD({values: [], fastPeriod, slowPeriod, signalPeriod, SimpleMASignal: false, SimpleMAOscillator: false})
-    const periodStr = [fastPeriod, slowPeriod, signalPeriod].join('_')
+export function macd(chart:IChartItem[], period: number[]) {
+    const macd = new MACD({values: [], fastPeriod: period[0], slowPeriod: period[1], signalPeriod: period[2], SimpleMASignal: false, SimpleMAOscillator: false})
+    const periodStr = period.join('_')
     
     let lastValue:MACDOutput
     for(let i = 0; i < chart.length; i ++) {

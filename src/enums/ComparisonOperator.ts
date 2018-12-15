@@ -3,6 +3,6 @@ export enum ComparisonOperator {
     LT = 'LT',
     EQ = 'EQ',
     AROUND = 'AROUND',
-    ISTRUE = "ISTRUE",
-    ISFALSE = "ISFALSE"
+    TRUE = "TRUE",
+    FALSE = "FALSE"
 }

@@ -21,9 +21,9 @@ export function answerQuestion(chart:IChartItem[], question:IQuestion):IAnswer {
 }
 
 export async function fetchAndAnswer(question: IQuestion):Promise<IAnswer> {
-    const chart = await fetchChart(question.symbol, '5y')
+    const chart = await fetchChart(question.symbol)
     anal.candlePatterns(chart)
-    anal.priceEvolution(chart, 3)
+    anal.priceEvolution(chart, question.resultCondition.analytic.period[0])
 
     return answerQuestion(chart, question)
 }

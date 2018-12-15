@@ -10,16 +10,18 @@ const question:IQuestion = {
             subType: 'morningstar'
         },
         comparison: {
-            operator: ComparisonOperator.ISTRUE,
+            operator: ComparisonOperator.TRUE,
         },
     },
     resultCondition: {
         analytic: {
-            type: 'candlePatterns',
-            subType: 'morningstar'
+            type: 'priceEvolution',
+            subType: 'futureHighestRelative',
+            period: [5]
         },
         comparison: {
-            operator: ComparisonOperator.ISTRUE,
+            operator: ComparisonOperator.GT,
+            value: -10
         }
     }
 }
