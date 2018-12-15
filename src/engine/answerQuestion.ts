@@ -2,8 +2,7 @@ import { IQuestion, IAnswer } from "../interfaces/IQuestion";
 import { getConditionFunction } from "./getConditionFunction";
 import { IChartItem } from "../interfaces/IChartItem";
 import { fetchChart } from "./fetcher";
-import { sma } from "./analytics/movingAvg";
-import { highestFutureRatio } from "./analytics/priceEvolution";
+import anal from "./analytics/index";
 
 export function answerQuestion(chart:IChartItem[], question:IQuestion):IAnswer {   
     const conditionFunction = getConditionFunction(question.condition)
@@ -23,7 +22,8 @@ export function answerQuestion(chart:IChartItem[], question:IQuestion):IAnswer {
 
 export async function fetchAndAnswer(question: IQuestion):Promise<IAnswer> {
     const chart = await fetchChart(question.symbol, '5y')
-    highestFutureRatio(chart, 3)
-    sma(chart, 7)
+    anal.candlePatterns(chart)
+    anal.priceEvolution(chart, 3)
+
     return answerQuestion(chart, question)
-} 
+}

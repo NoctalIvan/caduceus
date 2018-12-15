@@ -35,8 +35,8 @@ Data & finance ftw
 
 - [x] adx
 - [x] atr
-
 - [x] roc
+
 - [ ] kst
 - [ ] psar
 - [ ] stochastic

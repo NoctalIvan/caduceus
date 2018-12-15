@@ -24,11 +24,12 @@ export interface ICondition {
 
 export interface IAnalytic {
     type: string,
-    period: number
+    subType: string,
+    period?: number[],
 }
 
 export interface IComparison {
     operator:ComparisonOperator,
-    value:number,
+    value?:number,
     precison?:number,
 }

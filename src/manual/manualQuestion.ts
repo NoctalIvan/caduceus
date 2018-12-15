@@ -5,17 +5,21 @@ import { fetchAndAnswer, answerQuestion } from "../engine/answerQuestion";
 const question:IQuestion = {
     symbol: 'aapl',
     condition: {
-        analytic: 'lastChangePercent',
+        analytic: {
+            type: 'candlePatterns',
+            subType: 'morningstar'
+        },
         comparison: {
-            operator: ComparisonOperator.LT,
-            value: -2
+            operator: ComparisonOperator.ISTRUE,
         },
     },
     resultCondition: {
-        analytic: 'changePercent',
+        analytic: {
+            type: 'candlePatterns',
+            subType: 'morningstar'
+        },
         comparison: {
-            operator: ComparisonOperator.GT,
-            value: 1
+            operator: ComparisonOperator.ISTRUE,
         }
     }
 }
