@@ -75,9 +75,13 @@ export interface IChartItem extends IBaseChartItem {
         pdiDelta: number,
     }}
 
-    // StochRsi
-    stochRsi: {[period: string] : {
-        rsi: number,
-        rsiDelta: number,
+    atr: {[period: string] : {
+        atr: number,
+        atrDelta: number,
+    }}
+
+    roc: {[period: string] : {
+        roc: number,
+        rocDelta: number,
     }}
 }

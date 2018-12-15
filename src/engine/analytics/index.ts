@@ -4,6 +4,8 @@ import { macd } from "./macd";
 import { movingAverages } from "./movingAvg";
 import { priceEvolution } from "./priceEvolution";
 import { rsi } from "./rsi";
+import { atr } from "./atr";
+import { roc } from "./roc";
 
 export default {
     adx: adx,
@@ -11,5 +13,7 @@ export default {
     macd: macd,
     movingAvg: movingAverages,
     priceEvolution: priceEvolution,
-    rsi: rsi 
+    rsi: rsi,
+    atr: atr,
+    roc: roc,
 }

@@ -34,20 +34,20 @@ Data & finance ftw
 - [x] rsi
 
 - [x] adx
-- [ ] atr
+- [x] atr
 
-- [ ] stochasticrsi
-
-- [ ] bollingerbands
-- [ ] truerange
-- [ ] roc
+- [x] roc
 - [ ] kst
 - [ ] psar
 - [ ] stochastic
 - [ ] williamsr
+- [ ] stochasticrsi
+- [ ] trix
+
+- [ ] bollingerbands
+
 - [ ] adl
 - [ ] obv
-- [ ] trix
 - [ ] cci
 - [ ] awesomeoscillator
 - [ ] forceindex

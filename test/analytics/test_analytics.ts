@@ -10,7 +10,11 @@ it("analytics - rsi", () => {
     anal.macd(chart, 3, 5, 4)
     anal.movingAvg(chart, 3)
     anal.priceEvolution(chart, 3)
+    anal.atr(chart, 3)
+    anal.roc(chart, 3)
+    console.log(chart[8])
 
+    return
     assert.deepEqual(chart[8], { date: '2018-11-23',
     open: 174.94,
     high: 176.595,
