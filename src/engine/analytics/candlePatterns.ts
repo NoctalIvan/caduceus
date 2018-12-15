@@ -2,7 +2,15 @@ import { IChartItem } from "../../interfaces/IChartItem";
 import { CandlePattern } from "../../enums/candlePattern";
 import * as anal from 'technicalindicators'
 
-export function candlePattern(chart:IChartItem[], pattern:CandlePattern) {
+export function candlePattern(chart:IChartItem[], pattern?:CandlePattern) {
+    if(!pattern) {
+        Object.keys(CandlePattern).forEach((pat:CandlePattern) => {
+            candlePattern(chart, pat)
+        })
+
+        return
+    }
+
     const analytic = anal[pattern.toString()]
     for(let i = 4; i < chart.length; i ++) {
         const item = chart[i]

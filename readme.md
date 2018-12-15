@@ -31,12 +31,14 @@ Data & finance ftw
 
 - [x] macd
 
-- [ ] rsi
+- [x] rsi
+
+- [x] adx
+- [ ] atr
+
 - [ ] stochasticrsi
 
 - [ ] bollingerbands
-- [ ] adx
-- [ ] atr
 - [ ] truerange
 - [ ] roc
 - [ ] kst
