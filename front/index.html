@@ -9,9 +9,111 @@
     <div id="app">
         <v-app>
         <v-content>
+            <v-toolbar dark>
+                <v-toolbar-title>Caduceus</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-toolbar-items>
+                    <v-btn flat>about</v-btn>
+                    <v-btn flat>stock dashboard</v-btn>
+                    <v-btn flat>query engine</v-btn>
+                    <v-btn flat>time machine</v-btn>
+                    <v-btn flat>contact us</v-btn>
+                </v-toolbar-items>
+            </v-toolbar>
+            
+            <v-parallax
+                id="about"
+                dark
+                src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
+                <v-layout
+                    align-center
+                    column
+                    justify-center
+                >
+                    <div class="typewriter">
+                        <h1 class="display-2 mb-3">Caduceus</h1>
+                    </div>
+                    <h4 class="subheading font-weight-thin">A data-driven stock market time machine</h4>
+                    <div class="prototype">Prototype</div>
+                </v-layout>
+            </v-parallax>
+
             <v-container>
-                <btn />
+                <section>
+                    <v-layout
+                        column
+                        wrap
+                        class="my-5"
+                        align-center
+                    >
+                        <v-flex xs12 sm4 class="my-3">
+                        <div class="text-xs-center">
+                            <h2 class="headline">Highest level big data at the reach of independant day traders</h2>
+                        </div>
+                        </v-flex>
+                        <v-flex xs12>
+                        <v-container grid-list-xl>
+                            <v-layout row wrap align-center>
+                            <v-flex xs12 md4>
+                                <v-card class="elevation-0 transparent">
+                                <v-card-text class="text-xs-center">
+                                    <v-icon x-large class="blue--text text--lighten-2">all_inclusive</v-icon>
+                                </v-card-text>
+                                <v-card-title primary-title class="layout justify-center">
+                                    <div class="headline text-xs-center">Get stock analytics</div>
+                                </v-card-title>
+                                <v-card-text>
+                                    Caduceus provides in real time and over a <strong>5 year</strong> history more than <strong>100</strong> fully customizable widely recognized analytics
+                                    over more than <strong>8000</strong> stocks, including more than <strong>350</strong> cryptocurrency pairs
+                                </v-card-text>
+                                <v-card-action>
+                                    <v-btn color="blue" outline block>stock dashboard</v-btn>
+                                </v-card-action>
+                                </v-card>
+                            </v-flex>
+                            <v-flex xs12 md4>
+                                <v-card class="elevation-0 transparent">
+                                <v-card-text class="text-xs-center">
+                                    <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon>
+                                </v-card-text>
+                                <v-card-title primary-title class="layout justify-center">
+                                    <div class="headline">Measure their impact</div>
+                                </v-card-title>
+                                <v-card-text>
+                                    Use our query creator to get the exact corellation between a specific set of analytics
+                                    and future value of an asset. Find out by yourselves which indicators to trust to predict
+                                    the market.
+                                </v-card-text>
+                                <v-card-action>
+                                    <v-btn color="blue" outline block>Query engine</v-btn>
+                                </v-card-action>
+                                </v-card>
+                            </v-flex>
+                            <v-flex xs12 md4>
+                                <v-card class="elevation-0 transparent">
+                                <v-card-text class="text-xs-center">
+                                    <v-icon x-large class="blue--text text--lighten-2">build</v-icon>
+                                </v-card-text>
+                                <v-card-title primary-title class="layout justify-center">
+                                    <div class="headline text-xs-center">Test your strategies</div>
+                                </v-card-title>
+                                <v-card-text>
+                                    Now that you identified your winning indicators, design an automated trading strategy with our simulation tool
+                                    and see for yourself how efficient it would have been over the last 5 years.
+                                </v-card-text>
+                                <v-card-action>
+                                    <v-btn color="blue" outline block>Time machine</v-btn>
+                                </v-card-action>
+                                </v-card>
+                            </v-flex>
+                            </v-layout>
+                        </v-container>
+                        </v-flex>
+                    </v-layout>
+                    </section>
+            
             </v-container>
+
         </v-content>
         </v-app>
     </div>
@@ -23,5 +125,57 @@
     <script>
         new Vue({ el: '#app' })
     </script>
+
+    <style>
+        strong {
+            font-weight: bold
+        }
+
+        .prototype {
+            position: absolute;
+            font-size:80px;
+            color: red;
+            border: 4px solid red;
+            border-radius: 5px;
+            padding: 0 20px;
+            bottom: 80px;
+            transform: rotate(-20deg);
+            z-index: 10;
+        }
+
+        .display-2 {
+            font-size: 70px!important;
+        }
+
+        .subheading {
+            font-size: 30px!important;
+        }
+
+        .typewriter h1 {
+            overflow: hidden; /* Ensures the content is not revealed until the animation */
+            height: 65px;
+            padding-top: 5px;
+            border-right: .15em solid #163490; /* The typwriter cursor */
+            white-space: nowrap; /* Keeps the content on a single line */
+            margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+            letter-spacing: .15em; /* Adjust as needed */
+            font-family: monospace!important;
+            animation: 
+              typing 1.5s steps(8, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        /* The typing effect */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        /* The typewriter cursor effect */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #163490; }
+        }
+    </style>
 </body>
 </html>

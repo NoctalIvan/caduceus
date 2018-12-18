@@ -18,3 +18,11 @@ export async function fetchBinance(symbol:string, interval:string):Promise<IChar
     const res = await axios.get(`https://api.binance.com/api/v1/klines?symbol=${symbol}&interval=${interval}&limit=2000`)
     return res.data
 }
+
+// batch = 100 by 100
+// export async function fetchAllIex(duration:string):Promise<{[symbol:string]:IChartItem[]}> {
+//     const symbols = (await axios.get('https://api.iextrading.com/1.0/ref-data/symbols')).data.map(a => a.symbol)
+//     const data = (await axios.get('https://api.iextrading.com/1.0/stock/market/batch?symbols=' + symbols.slice(0,100).join(',') + '&types=chart&range=5y')).data
+//     console.log(data)
+//     return {}
+// }
