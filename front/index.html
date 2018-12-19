@@ -22,7 +22,6 @@
             </v-toolbar>
             
             <v-parallax
-                id="about"
                 dark
                 src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
                 <v-layout
@@ -39,7 +38,7 @@
             </v-parallax>
 
             <v-container>
-                <section>
+                <section id="about">
                     <v-layout
                         column
                         wrap
@@ -64,11 +63,9 @@
                                 </v-card-title>
                                 <v-card-text>
                                     Caduceus provides in real time and over a <strong>5 year</strong> history more than <strong>100</strong> fully customizable widely recognized analytics
-                                    over more than <strong>8000</strong> stocks, including more than <strong>350</strong> cryptocurrency pairs
+                                    over more than <strong>8000</strong> stocks, including more than <strong>350</strong> cryptocurrency pairs.
                                 </v-card-text>
-                                <v-card-action>
-                                    <v-btn color="blue" outline block>stock dashboard</v-btn>
-                                </v-card-action>
+                                <v-btn color="blue" outline block>stock dashboard</v-btn>
                                 </v-card>
                             </v-flex>
                             <v-flex xs12 md4>
@@ -84,9 +81,7 @@
                                     and future value of an asset. Find out by yourselves which indicators to trust to predict
                                     the market.
                                 </v-card-text>
-                                <v-card-action>
                                     <v-btn color="blue" outline block>Query engine</v-btn>
-                                </v-card-action>
                                 </v-card>
                             </v-flex>
                             <v-flex xs12 md4>
@@ -101,17 +96,42 @@
                                     Now that you identified your winning indicators, design an automated trading strategy with our simulation tool
                                     and see for yourself how efficient it would have been over the last 5 years.
                                 </v-card-text>
-                                <v-card-action>
                                     <v-btn color="blue" outline block>Time machine</v-btn>
-                                </v-card-action>
                                 </v-card>
                             </v-flex>
                             </v-layout>
                         </v-container>
                         </v-flex>
                     </v-layout>
-                    </section>
+                </section>
             
+                <section id="dashboard">
+                    <h2> Stock dashboard </h2>
+                    <p>The stock dashboard gives you a real time and past view of any symbol with all associated analytics.<br/> At term, it will be fully dynamic, customizable, and allow the configuration of alerts.</p>
+                    
+                    <v-card dark color="#171C27">
+                        <v-card-text>
+                            <v-autocomplete
+                                label="symbol"
+                                v-model="dashboard.symbol"
+                                :items="symbolItems"
+                                @change="loadTv()"
+                            ></v-autocomplete>
+                            <div v-show="dashboard.symbol">
+                                <div class="tradingview-widget-container">
+                                    <div id="tradingview_01312"></div>
+                                    <div class="tradingview-widget-copyright"><a :href="'https://fr.tradingview.com/symbols/' + dashboard.symbol" rel="noopener" target="_blank"><span class="blue-text">{{dashboard.symbol}} graphics</span></a> from TradingView</div>
+                                </div>
+
+                                <div>
+                                    Here, a looooooot of analytic data :)
+                                </div>
+                            </div>
+        
+                        </v-card-text>
+                    </v-card>                    
+                </section>
+
             </v-container>
 
         </v-content>
@@ -120,10 +140,43 @@
  
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 
     <script src="components/btn.js"></script>
     <script>
-        new Vue({ el: '#app' })
+        new Vue({ 
+            el: '#app',
+            data() {
+                return {
+                    symbolItems: [
+                        {value: '', text: 'Select a symbol'},
+                        'AAPL'
+                    ],
+                    dashboard: {
+                        symbol: ''
+                    }
+                }
+            },
+            methods: {
+                loadTv() {
+                    new TradingView.widget(
+                    {
+                        "width": '100%',
+                        "height": 400,
+                        "symbol": this.dashboard.symbol,
+                        "interval": "D",
+                        "timezone": "Etc/UTC",
+                        "theme": "dark",
+                        "style": "1",
+                        "locale": "en",
+                        "toolbar_bg": "#f1f3f6",
+                        "enable_publishing": false,
+                        "allow_symbol_change": false,
+                        "container_id": "tradingview_01312"
+                    });
+                },
+            }
+        })
     </script>
 
     <style>
