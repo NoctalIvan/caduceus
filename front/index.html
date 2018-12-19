@@ -56,7 +56,7 @@
                             <v-flex xs12 md4>
                                 <v-card class="elevation-0 transparent">
                                 <v-card-text class="text-xs-center">
-                                    <v-icon x-large class="blue--text text--lighten-2">all_inclusive</v-icon>
+                                    <v-icon x-large class="red--text text--lighten-2">all_inclusive</v-icon>
                                 </v-card-text>
                                 <v-card-title primary-title class="layout justify-center">
                                     <div class="headline text-xs-center">Get stock analytics</div>
@@ -65,13 +65,13 @@
                                     Caduceus provides in real time and over a <strong>5 year</strong> history more than <strong>100</strong> fully customizable widely recognized analytics
                                     over more than <strong>8000</strong> stocks, including more than <strong>350</strong> cryptocurrency pairs.
                                 </v-card-text>
-                                <v-btn color="blue" outline block>stock dashboard</v-btn>
+                                <v-btn color="red" outline block>stock dashboard</v-btn>
                                 </v-card>
                             </v-flex>
                             <v-flex xs12 md4>
                                 <v-card class="elevation-0 transparent">
                                 <v-card-text class="text-xs-center">
-                                    <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon>
+                                    <v-icon x-large class="red--text text--lighten-2">flash_on</v-icon>
                                 </v-card-text>
                                 <v-card-title primary-title class="layout justify-center">
                                     <div class="headline">Measure their impact</div>
@@ -81,13 +81,13 @@
                                     and future value of an asset. Find out by yourselves which indicators to trust to predict
                                     the market.
                                 </v-card-text>
-                                    <v-btn color="blue" outline block>Query engine</v-btn>
+                                    <v-btn color="red" outline block>Query engine</v-btn>
                                 </v-card>
                             </v-flex>
                             <v-flex xs12 md4>
                                 <v-card class="elevation-0 transparent">
                                 <v-card-text class="text-xs-center">
-                                    <v-icon x-large class="blue--text text--lighten-2">build</v-icon>
+                                    <v-icon x-large class="red--text text--lighten-2">build</v-icon>
                                 </v-card-text>
                                 <v-card-title primary-title class="layout justify-center">
                                     <div class="headline text-xs-center">Test your strategies</div>
@@ -96,7 +96,7 @@
                                     Now that you identified your winning indicators, design an automated trading strategy with our simulation tool
                                     and see for yourself how efficient it would have been over the last 5 years.
                                 </v-card-text>
-                                    <v-btn color="blue" outline block>Time machine</v-btn>
+                                    <v-btn color="red" outline block>Time machine</v-btn>
                                 </v-card>
                             </v-flex>
                             </v-layout>
@@ -105,7 +105,7 @@
                     </v-layout>
                 </section>
             
-                <section id="dashboard">
+                <section id="dashboard" class="panel-section">
                     <h2> Stock dashboard </h2>
                     <p>The stock dashboard gives you a real time and past view of any symbol with all associated analytics.<br/> At term, it will be fully dynamic, customizable, and allow the configuration of alerts.</p>
                     
@@ -127,10 +127,82 @@
                                     Here, a looooooot of analytic data :)
                                 </div>
                             </div>
+                            <div v-show="!dashboard.symbol">
+                                <img src="images/tvLogoGray.png" style="width: 100%" />
+                            </div>
         
                         </v-card-text>
                     </v-card>                    
                 </section>
+
+                <section class="panel-section">
+                    <h2>Query engine</h2>
+                    <p>The query engine allows you to determine the exact number of occurences of an analytic event over the last five years,
+                        as well as the future outcomes that followed.<br/>This is the most accurate way to assert of the efficiency of
+                        a mathematical indicator.
+                    </p>
+
+                    <v-card dark color="#171C27">
+                        <v-card-text>
+                            <v-layout>
+                                <v-flex xs6 class="rigth-sep container">
+                                    <h3>Query</h3>
+                                    <v-autocomplete
+                                        label="symbol"
+                                    ></v-autocomplete>
+                                    <v-autocomplete
+                                        label="analytic"
+                                    ></v-autocomplete>
+                                    <v-autocomplete
+                                        label="value"
+                                    ></v-autocomplete>
+                                    <v-autocomplete
+                                        label="parameters"
+                                    ></v-autocomplete>
+                                    <v-btn outline block color="blue">Run Query</v-btn>
+                                </v-flex>
+                                <v-flex xs6 class="container mt-0">
+                                    <h3>Result</h3>
+                                    <p class="grey--text mt-3">Run query to get results...</p>
+                                </v-flex>
+                            </v-layout>
+                        </v-card-text>
+                    </v-card>   
+                </section>
+
+                <section class="panel-section">
+                    <h2>Time machine</h2>
+                    <p>The time machine allows you to define a simple data-driven trading strategy and immediately test it over the last
+                        five years.<br/>The result you get will be very close to the one you would actually have gotten if you invested
+                        according to this strategy a few years back.<br/>
+                        This is the best way to try out a strategy before using it in real trading.</p>
+
+                    <v-card dark color="#171C27">
+                        <v-card-text>
+                            data
+                        </v-card-text>
+                    </v-card>   
+                </section>
+
+                <section class="panel-section">
+                    <h2>Next steps!</h2>
+                    <p>Do you want to use our dashboard data as an API service to power your own products?</p>
+                    <p>Do you have a strategy too complex for the time machine's interface that you would like to test with our data and analytics?</p>
+                    <p>Do you wish to concretize a trading strategy with a totally automated stock market interraction algorithm?</p>
+                    <br/>
+                    <a href="mailto:ivan.sedletzki@gmail.com"><v-btn block outline color="blue"><v-icon class="mr-2">mail</v-icon> Get in touch !</v-btn></a>
+                </section>
+
+                <h2 class="mt-4">Our tools</h2>
+                <a class="tool" href="https://fr.tradingview.com/" target="_blank">
+                    <img src="./images/tvLogo.png">
+                </a>
+                <a class="tool" href="https://iextrading.com/" target="_blank">
+                    <img src="./images/iexLogo.png">
+                </a>
+                <a class="tool" href="https://www.binance.com" target="_blank">
+                    <img src="./images/binanceLogo.gif">
+                </a>
 
             </v-container>
 
@@ -202,6 +274,37 @@
 
         .subheading {
             font-size: 30px!important;
+        }
+
+        .tool {
+            display: inline-block;
+            padding: 30px;
+        }
+
+        .tool img {
+            height: 100px;            
+        }
+
+        .panel-section {
+            margin-top: 70px;
+        }
+        
+        .panel-section h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #f44336;
+        }
+
+        .panel-section p {
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none!important;
+        }
+
+        .rigth-sep {
+            border-right: 1px solid gray;
         }
 
         .typewriter h1 {
