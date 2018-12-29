@@ -45,12 +45,12 @@ const symbols = [
 // SETUP BOT
 const axios = require('axios')
 const binance = require('node-binance-api')
-binance.options({
+binance.options = {
     'APIKEY': 'HV3cG70qLzZaXKEqp0WYK5iH3idjvGeFloeSlaEUB3wDH1e7f4VCxN5y7bBJN3c9',
     'APISECRET': 'MWfRjmCWuKKulF2taQemO1d6ppKJZaZKb09PX81021eZuoSCan4iwUZ9UGvzfeVQ',
     test: false,
     useServerTime: true
-})
+}
 
 const VOLUME = 0.005
 
@@ -110,3 +110,4 @@ const loop = async () => {
 
 var CronJob = require('cron').CronJob;
 new CronJob('40 0 * * * *', loop, null, true, 'America/Los_Angeles')
+console.log('cron started...')
