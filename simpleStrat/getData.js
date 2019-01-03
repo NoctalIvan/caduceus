@@ -2,12 +2,10 @@ const axios = require('axios')
 const fs = require('fs')
 
 const symbols = [
-    "ETHBTC",
     "XRPBTC",
     "TUSDBTC",
     "EOSBTC",
     "LTCBTC",
-    "BNBBTC",
     "TRXBTC",
     "WAVESBTC",
     "ENGBTC",

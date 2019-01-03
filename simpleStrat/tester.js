@@ -36,16 +36,16 @@ module.exports = (strat) => {
 
         return {
             symbol: price.symbol,
-            winning: 100 * results.filter(r => r.totalDiff > 0).length / results.length,
-            avgDiff: results.reduce((acc, r) => acc + r.totalDiff, 0),
-            avgTransCpt: results.reduce((acc, r) => acc + r.transactionCpt, 0) / results.length,
+            winning: +(100 * results.filter(r => r.totalDiff > 0).length / results.length).toFixed(2),
+            avgDiff: +(results.reduce((acc, r) => acc + r.totalDiff, 0)).toFixed(2),
+            avgTransCpt: +(results.reduce((acc, r) => acc + r.transactionCpt, 0) / results.length).toFixed(2),
         }
     })
 
     return symbolResults.concat({
         symbol: 'TOTAL',
-        winning: symbolResults.reduce((acc, a) => a.winning + acc, 0) / symbolResults.length,
-        avgDiff: symbolResults.reduce((acc, a) => a.avgDiff + acc, 0) / symbolResults.length,
-        avgTransCpt: symbolResults.reduce((acc, a) => a.avgTransCpt + acc, 0) / symbolResults.length,
+        winning: +(symbolResults.reduce((acc, a) => a.winning + acc, 0) / symbolResults.length).toFixed(2),
+        avgDiff: +(symbolResults.reduce((acc, a) => a.avgDiff + acc, 0) / symbolResults.length).toFixed(2),
+        avgTransCpt: +(symbolResults.reduce((acc, a) => a.avgTransCpt + acc, 0) / symbolResults.length).toFixed(2),
     })
 }

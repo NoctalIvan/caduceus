@@ -1,4 +1,5 @@
 const tester = require('./tester')
+const RSI = require('technicalindicators').RSI
 
 const SMA = (prices, period) => {
     return prices.slice(-period).reduce((acc, a) => acc + a.close, 0) / period
@@ -12,17 +13,36 @@ const SMADelta = (prices, period) => {
 
 let threshold = 0.2
 let period = 10
-const strat = {
+const stratAvg = {
     shouldBuy(prices) {
         const smaDelta = SMADelta(prices, period)
-        const lastPrice = prices[prices.length - 1]
         return smaDelta && smaDelta < threshold
     },
     shouldSell(prices) {
         const smaDelta = SMADelta(prices, period)        
-        const lastPrice = prices[prices.length - 1]
         return smaDelta && smaDelta > threshold
     }
 }
 
-console.table(tester(strat))
+let minRsi = 63
+let maxRsi = 74
+const stratRsi = {
+    shouldBuy(price) {
+        const rsi = RSI.calculate({values: price.map(a => a.close), period: 10}).slice(-1)[0]
+        return rsi && rsi < minRsi
+    },
+    shouldSell(price) {
+        const rsi = RSI.calculate({values: price.map(a => a.close), period: 10}).slice(-1)[0]
+        return rsi && rsi > maxRsi
+    }
+}
+
+// for(minRsi = 60; minRsi < 70; minRsi += 1) {
+//     console.log('\n')
+//     for(let j = 8; j < 15; j += 1) {
+//         maxRsi = minRsi + j
+//         console.log(minRsi, maxRsi, "=>", tester(stratRsi).slice(-1)[0].avgDiff)
+//     }
+// }
+
+console.table(tester(stratRsi))
