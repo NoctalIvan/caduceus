@@ -1,26 +1,16 @@
 // STRAT
-const SMA = (prices, period) => {
-    return prices.slice(-period).reduce((acc, a) => acc + a, 0) / period
-}
+const RSI = require('technicalindicators').RSI
 
-const SMADelta = (prices, period) => {
-    const sma = SMA(prices, period)
-    const lastSma = SMA(prices.slice(0, -1), period)
-    return sma && lastSma && 100 * sma / lastSma - 100
-}
-
-let threshold = 0.2
-let period = 10
+let minRsi = 63
+let maxRsi = 74
 const strat = {
     shouldBuy(prices) {
-        const smaDelta = SMADelta(prices, period)
-        // const lastPrice = prices[prices.length - 1]
-        return smaDelta && smaDelta < threshold
+        const rsi = RSI.calculate({values: prices, period: 10}).slice(-1)[0]
+        return rsi && rsi < minRsi
     },
     shouldSell(prices) {
-        const smaDelta = SMADelta(prices, period)        
-        // const lastPrice = prices[prices.length - 1]
-        return smaDelta && smaDelta > threshold
+        const rsi = RSI.calculate({values: prices, period: 10}).slice(-1)[0]
+        return rsi && rsi > maxRsi
     }
 }
 
@@ -72,7 +62,7 @@ const loop = async () => {
         // get prices
         let prices = {}
         await Promise.all(symbols.map(s => 
-            axios.get('https://api.binance.com/api/v1/klines?symbol=' + s + '&interval=1h&limit=11')
+            axios.get('https://api.binance.com/api/v1/klines?symbol=' + s + '&interval=1h&limit=15')
             .then(data => prices[s] = data.data.map(a => +a[4]))
         ))
 
