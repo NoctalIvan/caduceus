@@ -46,9 +46,11 @@ binance.options(binanceOptions)
 const VOLUME = 0.005
 
 const stepSizes = {}
+const minNotionals = {}
 axios.get('https://api.binance.com/api/v1/exchangeInfo').then(data => {
     data.data.symbols.forEach(s => {
         stepSizes[s.symbol] = s.filters.find(f => f.stepSize).stepSize
+        minNotionals[s.symbol] = +s.filters.find(f => f.minNotional).minNotional
     })
 })
 
@@ -72,7 +74,10 @@ const loop = async () => {
             if(!symbols.includes(s + "BTC")) {
                 delete balance[s]
             } else {
-                balance[s + "BTC"] = {available: +balance[s].available, onOrder: +balance[s].onOrder}
+                balance[s + "BTC"] = {
+                    available: +balance[s].available,
+                    availableBtc: +balance[s].available * prices[s + 'BTC'].slice(-1)[0],
+                    onOrder: +balance[s].onOrder}
                 delete balance[s]
             }
         }
@@ -94,8 +99,10 @@ const loop = async () => {
                 balance[symbol].available = +balance[symbol].available + +balance[symbol].onOrder
             }
 
+            const got = balance[symbol].availableBtc >= minNotionals[symbol]
+
             // buy?
-            if(balance[symbol].available < stepSizes[symbol] && strat.shouldBuy(prices[symbol])){
+            if(!got && strat.shouldBuy(prices[symbol])){
                 console.log('BUY ' + symbol)
                 const ticker = await getTicker(symbol)
                 binance.buy(
@@ -110,8 +117,8 @@ const loop = async () => {
             }
 
             // sell?
-            else if(balance[symbol].available > stepSizes[symbol] && strat.shouldSell(prices[symbol])){
-                console.log('SELL ' + symbol)            
+            else if(got && strat.shouldSell(prices[symbol])){
+                console.log('SELL ' + symbol)
                 const ticker = await getTicker(symbol)
                 binance.sell(
                     symbol,
