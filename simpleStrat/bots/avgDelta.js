@@ -104,7 +104,7 @@ const loop = async () => {
                     ticker.bidPrice,
                     {},
                     (err, response) => {
-                        if(err) console.log(err)
+                        if(err) console.log(err && err.body)
                     }
                 )
             }
@@ -119,7 +119,7 @@ const loop = async () => {
                     ticker.askPrice,
                     {},
                     (err, response) => {
-                        if(err) console.log(err)
+                        if(err) console.log(err && err.body)
                     }
                 )
             }
