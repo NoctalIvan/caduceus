@@ -38,7 +38,7 @@ const binance = require('node-binance-api')()
 const binanceOptions = {
     'APIKEY': 'HV3cG70qLzZaXKEqp0WYK5iH3idjvGeFloeSlaEUB3wDH1e7f4VCxN5y7bBJN3c9',
     'APISECRET': 'MWfRjmCWuKKulF2taQemO1d6ppKJZaZKb09PX81021eZuoSCan4iwUZ9UGvzfeVQ',
-    test: true,
+    test: false,
     useServerTime: true
 }
 binance.options(binanceOptions)
