@@ -38,7 +38,7 @@ const binance = require('node-binance-api')()
 const binanceOptions = {
     'APIKEY': 'HV3cG70qLzZaXKEqp0WYK5iH3idjvGeFloeSlaEUB3wDH1e7f4VCxN5y7bBJN3c9',
     'APISECRET': 'MWfRjmCWuKKulF2taQemO1d6ppKJZaZKb09PX81021eZuoSCan4iwUZ9UGvzfeVQ',
-    test: false,
+    test: true,
     useServerTime: true
 }
 binance.options(binanceOptions)
@@ -77,6 +77,14 @@ const loop = async () => {
             }
         }
 
+        if(binanceOptions.test) {
+            console.log(symbols.map(s => ({
+                symbol: s,
+                buy: strat.shouldBuy(prices[s]),
+                sel: strat.shouldSell(prices[s]),
+            })))
+        }
+
         // actions (TODO: limit and not market)
         for(symbol of symbols) {
             // ongoing order
@@ -93,7 +101,11 @@ const loop = async () => {
                 binance.buy(
                     symbol,
                     getVolume(VOLUME / prices[symbol].slice(-1), symbol),
-                    ticker.bidPrice
+                    ticker.bidPrice,
+                    {},
+                    (err, response) => {
+                        if(err) console.log(err)
+                    }
                 )
             }
 
@@ -104,7 +116,11 @@ const loop = async () => {
                 binance.sell(
                     symbol,
                     getVolume(VOLUME / prices[symbol].slice(-1), symbol),
-                    ticker.askPrice
+                    ticker.askPrice,
+                    {},
+                    (err, response) => {
+                        if(err) console.log(err)
+                    }
                 )
             }
         }
