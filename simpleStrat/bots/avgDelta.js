@@ -115,7 +115,7 @@ const loop = async () => {
                 const ticker = await getTicker(symbol)
                 binance.sell(
                     symbol,
-                    getVolume(VOLUME / prices[symbol].slice(-1), symbol),
+                    getVolume(balance[symbol].available, symbol),
                     ticker.askPrice,
                     {},
                     (err, response) => {
